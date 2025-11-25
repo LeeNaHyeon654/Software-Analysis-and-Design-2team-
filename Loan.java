@@ -8,7 +8,7 @@ import java.util.*;
 public class Loan
 {
     public Book LoanBook;
-    public Borrower LoanBorrower;
+    public ArrayList<Borrower> LoanBorrower;
     
     private Date loanDate;
     private Date returnDate;
