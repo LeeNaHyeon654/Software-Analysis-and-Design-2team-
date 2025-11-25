@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author (작성자 이름)
  * @version (버전 번호 또는 작성한 날짜)
  */
-public class LoanColletion
+public class LoanCollection
 {
     private ArrayList<Loan> loan;
     public LoanColletion(ArrayList<Loan> loan){
