@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class LoanCollection
 {
     private ArrayList<Loan> loan;
-    public LoanColletion(ArrayList<Loan> loan){
+    public LoanCollection(ArrayList<Loan> loan){
         loan = new ArrayList<Loan>();
     }
 }
