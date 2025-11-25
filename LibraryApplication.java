@@ -7,9 +7,12 @@
  */
 public class LibraryApplication
 {
-    private String LibraryName;
-    BookCollection bookApp;
+    private BookCollection bookApp;
+    private LoanCollection loanApp;
+    //private LoanHistoryCollection loanHistoryApp;
+    private BorrowerCollection borrowerApp;
     
+    private String LibraryName;
     
     public LibraryApplication(String LibraryName){
         this.LibraryName = LibraryName;

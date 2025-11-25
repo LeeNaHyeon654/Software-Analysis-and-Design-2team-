@@ -8,19 +8,24 @@ import java.util.*;
  */
 public class BorrowerCollection
 {
-    private ArrayList<Borrower> borrower;
-    /**
-     * 예제 메소드 - 이 주석을 사용자에 맞게 바꾸십시오
-     *
-     * @param  y  메소드의 샘플 파라미터
-     * @return    x 더하기 y의 결과값을 반환
-     */
+    private Borrower borrower;
+
+    private ArrayList<Borrower> borrowerCollection;
+
     public BorrowerCollection(ArrayList<Borrower> borrower){
         borrower = new ArrayList<Borrower>();
     }
-    public borrower searchBorrower(int phoneNumber)
+
+    public boolean cheakBorrower(int phoneNumber){
+        return true;
+    }
+
+    public String saveBorrower(Borrower borrower){
+        return "";
+    }
+
+    public Borrower searchBorrower(int phoneNumber)
     {
-        
         return borrower;
     }
 }

@@ -8,8 +8,19 @@ import java.util.ArrayList;
  */
 public class LoanCollection
 {
-    private ArrayList<Loan> loan;
+    private Loan loan;
+    
+    private ArrayList<Loan> loanCollection;
+    
     public LoanCollection(ArrayList<Loan> loan){
         loan = new ArrayList<Loan>();
+    }
+    
+    public String saveLoan(Loan loan){
+        return "";
+    }
+    
+    public String deleteLoan(){
+        return "";
     }
 }
