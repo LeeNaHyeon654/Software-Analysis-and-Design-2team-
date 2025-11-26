@@ -5,7 +5,7 @@ import java.util.Calendar;
  * Loan 클래스의 설명을 작성하세요.
  *
  * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @version (버전 번호 또는 작성한
  */
 public class Loan
 {
@@ -24,12 +24,15 @@ public class Loan
     {
         this.book = book;
         this.borrower = borrower;
-        
+
         this.loanDate = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(loanDate);
         cal.add(Calendar.DATE, 15);
         this.returnDate = cal.getTime();
+
+        this.loanDate = loanDate;
+        this.returnDate = returnDate;
     }
 
     /**

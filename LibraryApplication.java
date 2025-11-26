@@ -7,9 +7,38 @@
  */
 public class LibraryApplication
 {
+    private BookCollection bookApp;
+    private LoanCollection loanApp;
+    private LoanHistoryCollection loanHistoryApp;
+    private BorrowerCollection borrowerApp;
+    
     private String LibraryName;
     
     public LibraryApplication(String LibraryName){
-        
+        this.LibraryName = LibraryName;
+    }
+    
+    public String registerOneBorrower(String name, int phoneNumber){
+        return "";
+    }
+    
+    public String registerOneBook(String title, String author, String bookID){
+        return "";
+    }
+    
+    public String displayBooksForLoan(){
+        return "";
+    }
+    
+    public String displayBooksOnLoan(){
+        return "";
+    }
+    
+    public String loanOneBook(String bookID, int phoneNumber){
+        return "";
+    }
+    
+    public String returnOneBook(String bookID, int phoneNumber){
+        return "";
     }
 }
