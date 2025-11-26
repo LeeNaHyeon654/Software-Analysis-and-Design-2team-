@@ -3,10 +3,10 @@ package CoreEngine;
 import java.util.ArrayList;
 
 /**
- * LoanColletion 클래스의 설명을 작성하세요.
+ * Loan 클래스에서 생성된 대출 정보를 저장하는 클래스.
  *
- * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @author (2024320011 김혜린)
+ * @version (2025.11.25)
  */
 public class LoanCollection
 {
@@ -19,10 +19,10 @@ public class LoanCollection
     }
 
     /**
-     * Loan을 collection에 저장하는 메소드
+     * Loan을 Collection에 저장하는 메소드.
      *
-     * @param  loan  저장할 Loan 객체
-     * @return   저장 완료 메세지
+     * @param  loan : Loan
+     * @return  저장 완료 메세지
      */
     public String saveLoan(Loan loan){
         loanCollection.add(loan);
@@ -30,10 +30,9 @@ public class LoanCollection
     }
 
     /**
-     * UC6 - 해당 Loan 객체를 삭제하는 메소드
+     * UC6 - Loan 객체를 Collection 내부에서 삭제하는 메소드.
      *
-     * @param  loan  삭제할 Loan 객체
-     * @return   객체 삭제 완료 메세지
+     * @return  반납 완료 메세지
      */
     public String deleteLoan(){
         return "반납 완료";

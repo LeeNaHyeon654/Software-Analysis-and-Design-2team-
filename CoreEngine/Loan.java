@@ -23,7 +23,6 @@ public class Loan
      * Loan 클래스의 객체 생성자
      * 
      * @ param  book : Book, borrower : Borrower
-     * @ return 
      */
     public Loan(Book book, Borrower borrower)
     {
@@ -41,10 +40,7 @@ public class Loan
     }
 
     /**
-     * Loan과 Book, Borrower 사이의 연결을 해제하는 메소드
-     *
-     * @param   
-     * @return  
+     * Loan과 Book, Borrower 사이의 연결을 해제하는 메소드.
      */
     public void disconnect()
     {
