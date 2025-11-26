@@ -1,0 +1,71 @@
+package CoreEngine;
+
+/**
+ * Book 클래스의 설명을 작성하세요.
+ *
+ * @author (작성자 이름)
+ * @version (버전 번호 또는 작성한 날짜)
+ */
+public class Book
+{
+    private Loan LoanList;
+
+    private String title;
+    private String author;
+    private int bookID;
+
+    public Book(String title, String author, int bookID)
+    {
+        this.title = title;
+        this.author = author;
+        this.bookID = bookID;
+    }
+
+    /**
+     * UC3 - 출력 요청 메소드
+     *
+     * @return    책의 정보(이름, 저자, 고유번호) 출력
+     */
+    public String display()
+    {
+        if(checkBook()==true){
+            return "책의 이름 : " + title + ", 책의 저자 : " + author + ", 책의 고유번호 : " + bookID;
+        }
+        else{
+            return "대출 가능한 책의 정보가 없습니다";
+        }
+    }
+
+    /**
+     * UC3 - 대출가능한 책인지 검사하는 메소드
+     *
+     * @return    boolean 대출가능이면 true, 대출 불가능이면 false
+     */
+    public boolean checkBook()
+    {
+        return LoanList == null;
+    }
+
+    /**
+     * 현재 Book과 연결된 Loan을 검색하는 메소드
+     *
+     * @return  연결된 Loan, 없으면 null
+     */
+    public Loan searchLoan(){
+        return LoanList;
+    }
+
+    /**
+     * Book과 Loan의 연결을 해제하는 메소드
+     */
+    public void disconnect(){
+        LoanList = null;
+    }
+
+    /**
+     * 책의 고유변호를 가져오는 메소드
+     */
+    public int getBookID() {
+        return bookID;
+    }
+}

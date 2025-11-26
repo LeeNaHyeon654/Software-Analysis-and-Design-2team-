@@ -2,10 +2,10 @@ import java.util.*;
 import java.util.Calendar;
 
 /**
- * Loan 클래스의 설명을 작성하세요.
+ * 대출이 진행될 때 저장돼야 하는 정보를 저장하고, 반납이 진행될 때 연결을 해제하는 작업을 진행하는 클래스.
  *
- * @author (작성자 이름)
- * @version (버전 번호 또는 작성한
+ * @author (2024320011 김혜린)
+ * @version (2025.11.25)
  */
 public class Loan
 {
@@ -19,6 +19,9 @@ public class Loan
 
     /**
      * Loan 클래스의 객체 생성자
+     * 
+     * @ param  book : Book, borrower : Borrower
+     * @ return 
      */
     public Loan(Book book, Borrower borrower)
     {
@@ -36,10 +39,10 @@ public class Loan
     }
 
     /**
-     * 예제 메소드 - 이 주석을 사용자에 맞게 바꾸십시오
+     * Loan과 Book, Borrower 사이의 연결을 해제하는 메소드
      *
-     * @param  y  메소드의 샘플 파라미터
-     * @return    x 더하기 y의 결과값을 반환
+     * @param   
+     * @return  
      */
     public void disconnect()
     {
