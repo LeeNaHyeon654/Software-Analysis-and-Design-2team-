@@ -9,7 +9,7 @@ public class Loan
 {
     public Book LoanBook;
     public ArrayList<Borrower> LoanBorrower;
-    
+
     private Date loanDate;
     private Date returnDate;
 
@@ -18,8 +18,9 @@ public class Loan
         this.loanDate = loanDate;
         this.returnDate = returnDate;
     }
-    
+
     public void disconnect(){
-        
+        LoanBorrower = null;
+        LoanBook = null;
     }
 }

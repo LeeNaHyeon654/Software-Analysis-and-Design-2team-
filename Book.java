@@ -13,9 +13,6 @@ public class Book
     private String author;
     private String bookID;
     
-    /**
-     * Book 클래스의 객체 생성자
-     */
     public Book(String title, String author, String bookID)
     {
         this.title = title;
@@ -32,5 +29,13 @@ public class Book
     public boolean checkBook()
     {
         return true;
+    }
+    
+    public Loan searchLoan(){
+        return LoanList;
+    }
+    
+    public void disconnect(){
+        LoanList = null;
     }
 }

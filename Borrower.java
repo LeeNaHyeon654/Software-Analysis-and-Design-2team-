@@ -29,6 +29,6 @@ public class Borrower
     }
 
     public void disconnect(){
-
+        LoanDetail = null;
     }
 }

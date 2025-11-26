@@ -9,7 +9,7 @@ public class LibraryApplication
 {
     private BookCollection bookApp;
     private LoanCollection loanApp;
-    //private LoanHistoryCollection loanHistoryApp;
+    private LoanHistoryCollection loanHistoryApp;
     private BorrowerCollection borrowerApp;
     
     private String LibraryName;

@@ -12,8 +12,8 @@ public class LoanCollection
     
     private ArrayList<Loan> loanCollection;
     
-    public LoanCollection(ArrayList<Loan> loan){
-        loan = new ArrayList<Loan>();
+    public LoanCollection(ArrayList<Loan> loanCollection){
+        this.loanCollection = loanCollection;
     }
     
     public String saveLoan(Loan loan){
