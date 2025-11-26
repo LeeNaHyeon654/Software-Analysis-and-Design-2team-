@@ -1,19 +1,24 @@
 package CoreEngine;
 
 /**
- * Book 클래스의 설명을 작성하세요.
+ * 책에대한 정보를 담은 클래스
  *
- * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @author (2024320009 이나현)
+ * @version (2025.11.25)
  */
 public class Book
 {
-    private Loan LoanList;
+    public Loan LoanList;
 
     private String title;
     private String author;
     private int bookID;
-
+    
+    /**
+     * Book 클래스의 객체 생성자
+     * 
+     * @param  title : String, author : String, bookID : int
+     */
     public Book(String title, String author, int bookID)
     {
         this.title = title;

@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class LoanHistoryCollection
 {
-    private Loan loan;
+    public Loan loan;
     
     private ArrayList<Loan> loanHistoryCollection;
 

@@ -3,18 +3,23 @@ package CoreEngine;
 import java.util.*;
 
 /**
- * Borrower 클래스의 설명을 작성하세요.
+ * 대출자에 대한 정보를 담은 클래스
  *
- * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @author (2024320009 이나현)
+ * @version (2025.11.25)
  */
 public class Borrower
 {
-    private Loan LoanDetail;
+    public Loan LoanDetail;
 
     private String name;
     private int phoneNumber;
-
+    
+    /**
+     * Borrower 클래스의 객체 생성자
+     * 
+     * @param  name : String, phoneNumber : int
+     */
     public Borrower(String name, int phoneNumber)
     {
         this.name = name;

@@ -3,17 +3,21 @@ package CoreEngine;
 import java.util.*;
 
 /**
- * BorrowerColletion 클래스의 설명을 작성하세요.
+ * 대출자에 대한 정보를 ArrayList로 저장하고 관리하는 클래스
  *
- * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @author (2024320009 이나현)
+ * @version (2025.11.25)
  */
 public class BorrowerCollection
 {
-    private Borrower borrower;
+    public Borrower borrower;
 
     private ArrayList<Borrower> borrowerCollection;
-
+    /**
+     * BorrowerCollection 클래스의 객체 생성자
+     * 
+     * @param  borrowerCollection : ArrayList<Borrower>
+     */
     public BorrowerCollection(ArrayList<Borrower> borrowerCollection){
         this.borrowerCollection = borrowerCollection;
     }
