@@ -1,3 +1,5 @@
+package CoreEngine;
+
 import java.util.*;
 /**
  * Loan 클래스의 설명을 작성하세요.
@@ -7,8 +9,8 @@ import java.util.*;
  */
 public class Loan
 {
-    public Book LoanBook;
-    public ArrayList<Borrower> LoanBorrower;
+    private Book LoanBook;
+    private Borrower LoanBorrower;
 
     private Date loanDate;
     private Date returnDate;

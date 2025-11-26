@@ -1,3 +1,5 @@
+package CoreEngine;
+
 import java.util.*;
 
 /**
@@ -21,13 +23,9 @@ public class LoanHistoryCollection
     }
 
     /**
-     * 예제 메소드 - 이 주석을 사용자에 맞게 바꾸십시오
-     *
-     * @param  y  메소드의 샘플 파라미터
-     * @return    x 더하기 y의 결과값을 반환
+     * UC5 - 대출내역을 LoanCollection으로부터 복사하는 메소드
      */
-    public void copyLoan()
-    {
-        
+    public void copyLoan() {
+        loanHistoryCollection.add(loan);
     }
 }
