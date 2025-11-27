@@ -28,7 +28,7 @@ public class LibraryApplication
         return "";
     }
 
-    public String registerOneBook(String title, String author, String bookID){
+    public String registerOneBook(String title, String author, int bookID){
         return "";
     }
 
@@ -40,11 +40,11 @@ public class LibraryApplication
         return "";
     }
 
-    public String loanOneBook(String bookID, int phoneNumber){
+    public String loanOneBook(int bookID, int phoneNumber){
         return "";
     }
 
-    public String returnOneBook(String bookID, int phoneNumber){
+    public String returnOneBook(int bookID, int phoneNumber){
         return "";
     }
 }

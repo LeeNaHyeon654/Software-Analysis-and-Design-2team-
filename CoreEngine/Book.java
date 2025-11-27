@@ -29,12 +29,12 @@ public class Book
     /**
      * UC3 - 출력 요청 메소드
      *
-     * @return    책의 정보(이름, 저자, 고유번호) 출력
+     * @return    책의 정보(제목, 저자, 고유번호) 출력
      */
     public String display()
     {
         if(checkBook()==true){
-            return "책의 이름 : " + title + ", 책의 저자 : " + author + ", 책의 고유번호 : " + bookID;
+            return "책의 제목 : " + title + ", 책의 저자 : " + author + ", 책의 고유번호 : " + bookID;
         }
         else{
             return "대출 가능한 책의 정보가 없습니다";
