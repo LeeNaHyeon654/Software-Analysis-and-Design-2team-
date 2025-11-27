@@ -1,7 +1,7 @@
 package CoreEngine;
 
 /**
- * 6개의 UseCase를 담고있는 클래스
+ * 6개의 UseCase의 작업을 총괄하는 클래스
  *
  * @author (2024320009 이나현)
  * @version (2025.11.25)

@@ -40,7 +40,7 @@ public class BookCollection
     }
 
     /**
-     * UC2 - book을 collection에 저장하는 메소드
+     * UC2 - book을 Collection에 저장하는 메소드
      *
      * @param  book  
      * @return    저장완료 메세지

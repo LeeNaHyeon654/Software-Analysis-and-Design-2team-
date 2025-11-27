@@ -38,7 +38,7 @@ public class BorrowerCollection
     }
 
     /**
-     * UC1 - borrower를 collection에 저장하는 메소드
+     * UC1 - borrower를 Collection에 저장하는 메소드
      *
      * @param  borrower   저장할 Borrower객체
      * @return    저장완료 메세지
