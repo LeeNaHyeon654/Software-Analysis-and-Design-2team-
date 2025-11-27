@@ -21,10 +21,9 @@ public class LoanCollection
     /**
      * Loan을 Collection에 저장하는 메소드.
      *
-     * @param  loan : Loan
      * @return  저장 완료 메세지
      */
-    public String saveLoan(Loan loan){
+    public String saveLoan(){
         loanCollection.add(loan);
         return "LoanCollection 저장 완료";
     }

@@ -26,8 +26,11 @@ public class LoanHistoryCollection
 
     /**
      * UC5 - 대출내역을 Loan으로부터 Loan 정보를 백업하는 메소드.
+     * 
+     * @return  백업 완료 메세지
      */
-    public void copyLoan() {
+    public String copyLoan() {
         loanHistoryCollection.add(loan);
+        return "LoanHistoryCollection 백업 완료";
     }
 }
