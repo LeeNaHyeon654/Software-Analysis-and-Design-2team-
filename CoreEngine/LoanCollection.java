@@ -15,7 +15,7 @@ public class LoanCollection
     private ArrayList<Loan> loanCollection;
 
     public LoanCollection(ArrayList<Loan> loanCollection){
-        this.loanCollection = loanCollection;
+        loanCollection = new ArrayList<Loan>();
     }
 
     /**

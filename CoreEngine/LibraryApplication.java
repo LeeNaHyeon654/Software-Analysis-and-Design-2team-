@@ -13,6 +13,7 @@ public class LibraryApplication
     public LoanCollection loanApp;
     public LoanHistoryCollection loanHistoryApp;
     public BorrowerCollection borrowerApp;
+    public Book book;
 
     private String LibraryName;
 
@@ -51,7 +52,15 @@ public class LibraryApplication
      * @return    대출가능한 책들 출력 결과 메세지
      */
     public String displayBooksForLoan(){
-        return "";
+        Book bringBook = bookApp.getBook();
+        while(bringBook != null){
+            bookApp.getBook();
+            boolean result = book.checkBook();
+            if(result == true){
+                return book.display();
+            }
+        }
+        return "대출 가능한 책이 없습니다.";
     }
 
     /**
@@ -60,7 +69,15 @@ public class LibraryApplication
      * @return    대출중인 책들 출력 결과 메세지
      */
     public String displayBooksOnLoan(){
-        return "";
+        Book bringBook = bookApp.getBook();
+        while(bringBook != null){
+            bookApp.getBook();
+            boolean result = book.checkBook();
+            if(result == false){
+                return book.display();
+            }
+        }
+        return "대출 가능한 책이 없습니다.";
     }
 
     /**

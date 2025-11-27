@@ -19,7 +19,7 @@ public class BorrowerCollection
      * @param  borrowerCollection : ArrayList<Borrower>
      */
     public BorrowerCollection(ArrayList<Borrower> borrowerCollection){
-        this.borrowerCollection = borrowerCollection;
+        borrowerCollection = new ArrayList<Borrower>();
     }
 
     /**
