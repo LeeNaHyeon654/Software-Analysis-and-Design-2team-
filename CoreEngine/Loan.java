@@ -29,14 +29,11 @@ public class Loan
         this.LoanBook = LoanBook;
         this.LoanBorrower = LoanBorrower;
 
-        this.loanDate = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(loanDate);
-        cal.add(Calendar.DATE, 15);
-        this.returnDate = cal.getTime();
-
-        this.loanDate = loanDate;
-        this.returnDate = returnDate;
+        this.loanDate = new Date(); // 오늘을 대출 날짜로 지정
+        Calendar cal = Calendar.getInstance(); // 반납 일자 계산을 위한 새로운 날짜 객체 생성
+        cal.setTime(loanDate); // 날짜 객체에 오늘 날짜를 대입
+        cal.add(Calendar.DATE, 15); // 오늘 날짜 + 15 = 반납 일자
+        this.returnDate = cal.getTime(); // 반납 일자 변수에 위에서 구한 값을 대입
     }
 
     /**
