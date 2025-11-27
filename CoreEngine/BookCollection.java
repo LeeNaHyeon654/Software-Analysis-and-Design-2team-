@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 책에 대한 정보를 TreeSet으로 저장하고 관리하는 클래스
  *
- * @author (2024320009 이나현)
+ * @author (2024320009 이나현, 2024320011 김혜린)
  * @version (2025.11.25)
  */
 public class BookCollection
@@ -27,7 +27,7 @@ public class BookCollection
     /**
      * UC2 - 이미 등록돼 있는지 book인지 검사하는 메소드
      *
-     * @param  bookID   book의 고유번호
+     * @param  bookID : int
      * @return    등록돼 있으면 true, 등록돼 있지 않으면 false
      */
     public boolean checkBook(int bookID){
@@ -42,7 +42,7 @@ public class BookCollection
     /**
      * UC2 - book을 Collection에 저장하는 메소드
      *
-     * @param  book  
+     * @param  book : Book
      * @return    저장완료 메세지
      */
     public String saveBook(Book book){
@@ -62,7 +62,7 @@ public class BookCollection
     /**
      * UC5 - 책의 고유번호로 Book를 검색하는 메소드
      *
-     * @param  bookID   책의 고유번호
+     * @param  bookID : int
      * @return   일치하는 Book, 없으면 null
      */
     public Book searchBook(int bookID){

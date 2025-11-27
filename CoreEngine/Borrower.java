@@ -3,9 +3,9 @@ package CoreEngine;
 import java.util.*;
 
 /**
- * 대출자에 대한 정보를 담은 클래스
+ * 이용자에 대한 정보를 담은 클래스
  *
- * @author (2024320009 이나현)
+ * @author (2024320009 이나현, 2024320011 김혜린)
  * @version (2025.11.25)
  */
 public class Borrower
@@ -43,9 +43,9 @@ public class Borrower
     }
 
     /**
-     * 대출자의 전화번호를 가져오는 메소드
+     * 이용자의 전화번호를 가져오는 메소드
      */
     public int getPhoneNumber(){
-        return phoneNumber;
+        return this.phoneNumber;
     }
 }

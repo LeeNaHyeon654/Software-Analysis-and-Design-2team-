@@ -1,9 +1,9 @@
 package CoreEngine;
 
 /**
- * 책에대한 정보를 담은 클래스
+ * 책에 대한 정보를 담은 클래스
  *
- * @author (2024320009 이나현)
+ * @author (2024320009 이나현, 2024320011 김혜린)
  * @version (2025.11.25)
  */
 public class Book
@@ -71,6 +71,6 @@ public class Book
      * 책의 고유변호를 가져오는 메소드
      */
     public int getBookID() {
-        return bookID;
+        return this.bookID;
     }
 }
