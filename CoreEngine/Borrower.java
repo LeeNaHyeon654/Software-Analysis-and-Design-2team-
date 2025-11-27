@@ -14,7 +14,7 @@ public class Borrower
 
     private String name;
     private int phoneNumber;
-    
+
     /**
      * Borrower 클래스의 객체 생성자
      * 
@@ -27,26 +27,16 @@ public class Borrower
     }
 
     /**
-     * Borrower 정보 출력 메소드
-     *
-     * @return   대출자 이름과 전화번호 정보
-     */
-    public String display()
-    {
-        return "대출자 이름 : " + name + ", 대출자 전화번호 : " + phoneNumber;
-    }
-
-    /**
-     * 현재 Borrower와 연결된 Loan을 검색하는 메소드
+     * UC6 - 현재 Borrower와 연결된 Loan을 검색하는 메소드
      *
      * @return   연결된 Loan, 없으면 null
      */
     public Loan searchLoan(){
         return LoanDetail;
     }
-
+    
     /**
-     * Borrower와 Loan의 연결을 해제하는 메소드
+     * UC6 - Borrower와 Loan의 연결을 해제하는 메소드
      */
     public void disconnect(){
         LoanDetail = null;
