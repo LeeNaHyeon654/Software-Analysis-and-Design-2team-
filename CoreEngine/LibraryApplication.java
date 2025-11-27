@@ -13,7 +13,9 @@ public class LibraryApplication
     public LoanHistoryCollection loanHistoryApp;
     public BorrowerCollection borrowerApp;
     public Book book;
-
+    public Borrower borrower;
+    public Loan loan;
+    
     private String LibraryName;
 
     /**
@@ -32,8 +34,12 @@ public class LibraryApplication
      * @return    이용자 등록 결과 메세지
      */
     public String registerOneBorrower(String name, int phoneNumber){
-
-        return "";
+        boolean result = borrowerApp.checkBorrower(phoneNumber);
+        if(result == true){
+            Borrower borrower = new Borrower(name, phoneNumber);
+            return borrowerApp.saveBorrower(borrower);
+        }
+        return "이미 등록된 이용자 입니다.";
     }
 
     /**
@@ -43,7 +49,12 @@ public class LibraryApplication
      * @return   책 등록 결과 메세지
      */
     public String registerOneBook(String title, String author, int bookID){
-        return "";
+        boolean result = bookApp.checkBook(bookID);
+        if(result == true){
+            Book book= new Book(title,author,bookID);
+            return bookApp.saveBook(book);
+        }
+        return "이미 등록된 책 입니다.";
     }
 
     /**
