@@ -40,7 +40,7 @@ public class Loan
     }
 
     /**
-     * Loan과 Book, Borrower 사이의 연결을 해제하는 메소드.
+     * UC6 - Loan과 Book, Borrower 사이의 연결을 해제하는 메소드.
      */
     public void disconnect()
     {

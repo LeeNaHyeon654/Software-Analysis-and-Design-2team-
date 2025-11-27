@@ -52,7 +52,7 @@ public class Book
     }
 
     /**
-     * 현재 Book과 연결된 Loan을 검색하는 메소드
+     * UC6 - 현재 Book과 연결된 Loan을 검색하는 메소드
      *
      * @return  연결된 Loan, 없으면 null
      */
@@ -61,7 +61,7 @@ public class Book
     }
 
     /**
-     * Book과 Loan의 연결을 해제하는 메소드
+     * UC6 - Book과 Loan의 연결을 해제하는 메소드
      */
     public void disconnect(){
         LoanList = null;
