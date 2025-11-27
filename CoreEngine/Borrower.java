@@ -22,7 +22,7 @@ public class Borrower
      */
     public Borrower(String name, int phoneNumber)
     {
-        this.name = name;
+        this.name = name; //미대출 상태로 설정해야 함.
         this.phoneNumber = phoneNumber;
     }
 

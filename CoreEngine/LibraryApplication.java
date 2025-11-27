@@ -1,4 +1,5 @@
 package CoreEngine;
+import java.util.*;
 
 /**
  * 6개의 UseCase의 작업을 총괄하는 클래스
@@ -30,8 +31,8 @@ public class LibraryApplication
      * @param  name : String, phoneNumber : int
      * @return    이용자 등록 결과 메세지
      */
-    public String registerOneBorrower(String name, int phoneNumber){
-        return "";
+    public String registerOneBorrower(String name, int phoneNumber){                      
+        return "이용자 등록이 완료되었습니다.";
     }
 
     /**
@@ -40,8 +41,8 @@ public class LibraryApplication
      * @param  title : String, author : String, bookID : int
      * @return   책 등록 결과 메세지
      */
-    public String registerOneBook(String title, String author, int bookID){
-        return "";
+    public String registerOneBook(String title, String author, int bookID){      
+        return "책 등록이 완료되었습니다.";
     }
 
     /**
