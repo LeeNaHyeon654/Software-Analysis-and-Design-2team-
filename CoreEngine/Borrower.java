@@ -46,6 +46,6 @@ public class Borrower
      * 이용자의 전화번호를 가져오는 메소드
      */
     public int getPhoneNumber(){
-        return phoneNumber;
+        return this.phoneNumber;
     }
 }
