@@ -21,7 +21,7 @@ public class BookCollection
      */
     public BookCollection(TreeSet<Book> bookCollection)
     {
-        this.bookCollection = bookCollection;
+        bookCollection = new TreeSet<Book>();
     }
 
     /**

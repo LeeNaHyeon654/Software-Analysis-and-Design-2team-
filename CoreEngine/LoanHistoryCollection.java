@@ -21,7 +21,7 @@ public class LoanHistoryCollection
      */
     public LoanHistoryCollection(ArrayList<Loan> loanHistoryCollection)
     {
-        this.loanHistoryCollection = loanHistoryCollection;
+        loanHistoryCollection = new ArrayList<Loan>();
     }
 
     /**
