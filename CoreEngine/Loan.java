@@ -11,8 +11,8 @@ import java.util.Calendar;
  */
 public class Loan
 {
-    public Book book;
-    public Borrower borrower;
+    public Book LoanBook;
+    public ArrayList<Borrower> LoanBorrower;
 
     private Date loanDate;
     private Date returnDate;
@@ -22,12 +22,12 @@ public class Loan
     /**
      * Loan 클래스의 객체 생성자
      * 
-     * @ param  book : Book, borrower : Borrower
+     * @ param  LoanBook : Book, LoanBorrower : ArrayList<Borrower>
      */
-    public Loan(Book book, Borrower borrower)
+    public Loan(Book LoanBook, ArrayList<Borrower> LoanBorrower)
     {
-        this.book = book;
-        this.borrower = borrower;
+        this.LoanBook = LoanBook;
+        this.LoanBorrower = LoanBorrower;
 
         this.loanDate = new Date();
         Calendar cal = Calendar.getInstance();
@@ -44,7 +44,7 @@ public class Loan
      */
     public void disconnect()
     {
-        borrower = null;
-        book = null;
+        LoanBorrower = null;
+        LoanBook = null;
     }
 }
