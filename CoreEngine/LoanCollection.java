@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Loan 클래스에서 생성된 대출 정보를 저장하는 클래스.
  *
- * @author (2024320011 김혜린)
+ * @author (2024320009 이나현, 2024320011 김혜린)
  * @version (2025.11.25)
  */
 public class LoanCollection

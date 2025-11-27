@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Loan 정보를 백업해, 추후에 대출 내역을 확인할 수 있도록 저장해 두는 클래스.
  *
- * @author (2024320011 김혜린)
+ * @author (2024320009 이나현, 2024320011 김혜린)
  * @version (2025.11.25)
  */
 public class LoanHistoryCollection

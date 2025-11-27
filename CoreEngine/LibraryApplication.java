@@ -3,7 +3,7 @@ package CoreEngine;
 /**
  * 6개의 UseCase의 작업을 총괄하는 클래스
  *
- * @author (2024320009 이나현)
+ * @author (2024320009 이나현, 2024320011 김혜린)
  * @version (2025.11.25)
  */
 public class LibraryApplication
