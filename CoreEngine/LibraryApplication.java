@@ -13,7 +13,6 @@ public class LibraryApplication
     public LoanCollection loanApp;
     public LoanHistoryCollection loanHistoryApp;
     public BorrowerCollection borrowerApp;
-    public Book book;
 
     private String LibraryName;
 
@@ -32,8 +31,15 @@ public class LibraryApplication
      * @param  name : String, phoneNumber : int
      * @return    이용자 등록 결과 메세지
      */
-    public String registerOneBorrower(String name, int phoneNumber){                      
-        return "이용자 등록이 완료되었습니다.";
+    public String registerOneBorrower(String name, int phoneNumber){
+        boolean result = borrowerApp.checkBorrower(phoneNumber);
+        if(result != true){
+            Borrower borrower = new Borrower(name, phoneNumber);
+            return borrowerApp.saveBorrower(borrower);
+        }
+        else{
+            return "이미 등록된 이용자 입니다.";
+        }
     }
 
     /**
@@ -42,8 +48,15 @@ public class LibraryApplication
      * @param  title : String, author : String, bookID : int
      * @return   책 등록 결과 메세지
      */
-    public String registerOneBook(String title, String author, int bookID){      
-        return "책 등록이 완료되었습니다.";
+    public String registerOneBook(String title, String author, int bookID){
+        boolean result = bookApp.checkBook(bookID);
+        if(result != true){
+            Book book= new Book(title,author,bookID);
+            return bookApp.saveBook(book);
+        }
+        else{
+            return "이미 등록된 책 입니다.";
+        }
     }
 
     /**
@@ -59,8 +72,11 @@ public class LibraryApplication
             if(result == true){
                 return book.display();
             }
+            else{
+                return "대출 가능한 책이 없습니다.";
+            }
         }
-        return "대출 가능한 책이 없습니다.";
+        
     }
 
     /**
@@ -76,8 +92,11 @@ public class LibraryApplication
             if(result == false){
                 return book.display();
             }
+            else{
+                return "대출 가능한 책이 없습니다.";
+            }
         }
-        return "대출 가능한 책이 없습니다.";
+        
     }
 
     /**
