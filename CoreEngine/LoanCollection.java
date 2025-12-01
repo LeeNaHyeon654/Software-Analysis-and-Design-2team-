@@ -23,7 +23,7 @@ public class LoanCollection
      *
      * @return  저장 완료 메세지
      */
-    public String saveLoan(){
+    public String saveLoan(Loan loan){
         loanCollection.add(loan);
         return "LoanCollection 저장 완료";
     }
@@ -33,7 +33,8 @@ public class LoanCollection
      *
      * @return  반납 완료 메세지
      */
-    public String deleteLoan(){
+    public String deleteLoan(Loan loan){
+        loanCollection.remove(loan);
         return "반납 완료";
     }
 }
