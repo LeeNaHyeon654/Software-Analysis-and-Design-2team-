@@ -29,7 +29,7 @@ public class LoanHistoryCollection
      * 
      * @return  백업 완료 메세지
      */
-    public String copyLoan() {
+    public String copyLoan(Loan loan){
         loanHistoryCollection.add(loan);
         return "LoanHistoryCollection 백업 완료";
     }

@@ -12,7 +12,12 @@ public class BookCollection
 {
     public Book book;
 
-    private TreeSet<Book> bookCollection;
+    private TreeSet<Book> bookCollection; // bookCollection 말고 그냥 book으로????
+    private Iterator<Book> BookIt = bookCollection.iterator();
+    
+    // private Book book;
+    // public --------
+    // book = new Book();
 
     /**
      * BookCollection 클래스의 객체 생성자
@@ -31,8 +36,9 @@ public class BookCollection
      * @return    등록돼 있으면 true, 등록돼 있지 않으면 false
      */
     public boolean checkBook(int bookID){
-        for(Book b : bookCollection){
-            if(b.getBookID() == bookID){
+        Iterator<Book> it = bookCollection.iterator();
+        while(it.hasNext()){
+            if(it.next().getBookID() == bookID){
                 return true;
             }
         }
@@ -56,7 +62,10 @@ public class BookCollection
      * @return    book
      */
     public Book getBook(){
-        return book;
+        if(BookIt.hasNext()){
+            return BookIt.next();
+        }
+        return null;
     }
 
     /**
@@ -66,8 +75,10 @@ public class BookCollection
      * @return   일치하는 Book, 없으면 null
      */
     public Book searchBook(int bookID){
-        for(Book b : bookCollection){
-            if(b.getBookID()== bookID){
+        Iterator<Book> it = bookCollection.iterator();
+        while(it.hasNext()){
+            Book b = it.next();
+            if(b.getBookID() == bookID){
                 return b;
             }
         }

@@ -18,7 +18,8 @@ public class Loan
     private Date returnDate;
 
     private static final int dueDate = 15;
-
+    
+    // LoanList = new Loan[10];
     /**
      * Loan 클래스의 객체 생성자
      * 
@@ -39,8 +40,7 @@ public class Loan
     /**
      * UC6 - Loan과 Book, Borrower 사이의 연결을 해제하는 메소드.
      */
-    public void disconnect()
-    {
+    public void disconnect(){
         LoanBorrower = null;
         LoanBook = null;
     }

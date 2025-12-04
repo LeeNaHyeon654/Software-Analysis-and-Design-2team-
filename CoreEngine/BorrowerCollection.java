@@ -13,6 +13,8 @@ public class BorrowerCollection
     public Borrower borrower;
 
     private ArrayList<Borrower> borrowerCollection;
+    private Iterator<Borrower> BorrowerIt = borrowerCollection.iterator();
+    
     /**
      * BorrowerCollection 클래스의 객체 생성자
      * 
@@ -29,9 +31,10 @@ public class BorrowerCollection
      * @return    등록돼 있으면 true, 등록돼있지 않으면 false
      */
     public boolean checkBorrower(int phoneNumber){
-        for (Borrower b : borrowerCollection){
-            if (b.getPhoneNumber() == phoneNumber){
-                return true;   
+        while(BorrowerIt.hasNext()){
+            Borrower br = BorrowerIt.next();
+            if(br.getPhoneNumber() == phoneNumber){
+                return true;
             }
         }
         return false;
@@ -54,11 +57,11 @@ public class BorrowerCollection
      * @param  phoneNumber : int
      * @return   일치하는 Borrower, 없으면 null
      */
-    public Borrower searchBorrower(int phoneNumber)
-    {
-        for (Borrower b : borrowerCollection){
-            if (b.getPhoneNumber() == phoneNumber){
-                return b;
+    public Borrower searchBorrower(int phoneNumber){
+        while(BorrowerIt.hasNext()){
+            Borrower br = BorrowerIt.next();
+            if(br.getPhoneNumber() == phoneNumber){
+                return br;
             }
         }
         return null;

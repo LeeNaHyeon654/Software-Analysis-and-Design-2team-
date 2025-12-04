@@ -68,19 +68,23 @@ public class LibraryApplication
         String result = "";
 
         Book bringBook = bookApp.getBook();
-        while (bringBook != null){
-            if (bringBook.checkBook() == true){
+        while(bringBook != null){
+            if(bringBook.checkBook() == true){
                 result += bringBook.display() + "\n";
             }
             else{
                 result = "대출 가능한 책이 없습니다.";
             }
+            bringBook = bookApp.getBook();
+        }
+        if(result.equals("")){
+            result =  "대출 가능한 책의 정보가 없습니다";
         }
         return result;
     }
 
     /**
-     * UC4 - 대출중인 책들을 화면에 출력하는 메소드
+     * UC4 - 대출 중인 책들을 화면에 출력하는 메소드
      *
      * @return    대출중인 책들 출력 결과 메세지
      */
@@ -88,16 +92,16 @@ public class LibraryApplication
         String result = "";
 
         Book bringBook = bookApp.getBook();
-        while (bringBook != null){
-            if (bringBook.checkBook() != true){
+        while(bringBook != null){
+            if(bringBook.checkBook() != true){
                 result += bringBook.display() + "\n";
             }
             else{
                 return "대출 가능한 책이 없습니다.";
             }
         }
-        if (result.equals("")){
-            return "대출중인 책의 정보가 없습니다";
+        if(result.equals("")){
+            result =  "대출 중인 책의 정보가 없습니다";
         }
         return result;
     }
@@ -133,8 +137,7 @@ public class LibraryApplication
         Loan newLoan = new Loan(bookResult, borrowerList);
         loanApp.saveLoan(newLoan);
 
-        loanHistoryApp.loan = newLoan;
-        loanHistoryApp.copyLoan();
+        loanHistoryApp.copyLoan(newLoan);
 
         return "대출이 완료되었습니다.";
     }
