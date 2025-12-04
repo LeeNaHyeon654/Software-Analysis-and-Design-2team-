@@ -9,11 +9,11 @@ import java.util.*;
  */
 public class LibraryApplication
 {
-    public BookCollection bookApp;
-    public LoanCollection loanApp;
-    public LoanHistoryCollection loanHistoryApp;
-    public BorrowerCollection borrowerApp;
-
+    private BookCollection bookDB;
+    private LoanCollection loanDB;
+    private LoanHistoryCollection loanHistoryDB;
+    private BorrowerCollection borrowerDB;
+    
     private String LibraryName;
 
     /**
@@ -23,6 +23,11 @@ public class LibraryApplication
      */
     public LibraryApplication(String LibraryName){
         this.LibraryName = LibraryName;
+        
+        bookDB = new BookCollection();
+        loanDB = new LoanCollection();
+        loanHistoryDB = new LoanHistoryCollection();
+        borrowerDB = new BorrowerCollection();
     }
 
     /**
@@ -32,10 +37,10 @@ public class LibraryApplication
      * @return    이용자 등록 결과 메세지
      */
     public String registerOneBorrower(String name, int phoneNumber){
-        boolean result = borrowerApp.checkBorrower(phoneNumber);
+        boolean result = borrowerDB.checkBorrower(phoneNumber);
         if(result != true){
             Borrower borrower = new Borrower(name, phoneNumber);
-            return borrowerApp.saveBorrower(borrower);
+            return borrowerDB.saveBorrower(borrower);
         }
         else{
             return "이미 등록된 이용자입니다.";
@@ -49,10 +54,10 @@ public class LibraryApplication
      * @return   책 등록 결과 메세지
      */
     public String registerOneBook(String title, String author, int bookID){
-        boolean result = bookApp.checkBook(bookID);
+        boolean result = bookDB.checkBook(bookID);
         if(result != true){
             Book book= new Book(title,author,bookID);
-            return bookApp.saveBook(book);
+            return bookDB.saveBook(book);
         }
         else{
             return "이미 등록된 책입니다.";
@@ -67,12 +72,12 @@ public class LibraryApplication
     public String displayBooksForLoan(){
         String result = "";
 
-        Book bringBook = bookApp.getBook();
-        while(bringBook != null){
-            if(bringBook.checkBook() == true){
-                result += bringBook.display() + "\n";
+        Iterator<Book> BookIt = bookDB.getBooks();
+        while(BookIt.hasNext()){
+            Book book = BookIt.next();
+            if(book.searchLoan() == null){
+                result += book.display();
             }
-            bringBook = bookApp.getBook();
         }
         if(result.equals("")){
             result =  "대출 가능한 책의 정보가 없습니다";
@@ -88,12 +93,12 @@ public class LibraryApplication
     public String displayBooksOnLoan(){
         String result = "";
 
-        Book bringBook = bookApp.getBook();
-        while(bringBook != null){
-            if(bringBook.checkBook() != true){
-                result += bringBook.display() + "\n";
+        Iterator<Book> BookIt = bookDB.getBooks();
+        while(BookIt.hasNext()){
+            Book book = BookIt.next();
+            if(book.searchLoan() != null){
+                result += book.display();
             }
-            bringBook = bookApp.getBook();
         }
         if(result.equals("")){
             result =  "대출 중인 책의 정보가 없습니다";
@@ -108,31 +113,27 @@ public class LibraryApplication
      * @return    대출 결과 메세지
      */
     public String loanOneBook(int bookID, int phoneNumber){
-        Book bookResult = bookApp.searchBook(bookID);
-        if (bookResult == null){
+        Book bookResult = bookDB.searchBook(bookID);
+        if(bookResult == null){
             return "등록되지 않은 책 입니다.";
         }
 
-        Borrower borrowerResult = borrowerApp.searchBorrower(phoneNumber);
-        if (borrowerResult == null){
+        Borrower borrowerResult = borrowerDB.searchBorrower(phoneNumber);
+        if(borrowerResult == null){
             return "등록되지 않은 이용자 입니다.";
         }
 
-        if (bookResult.checkBook() != true){
-            return "이미 대출중인 책 입니다.";
+        if(borrowerResult.getLoanCount() >=10){
+            return "대출 가능한 권수를 초과했습니다. (최대 10권)";
         }
-
-        if (borrowerResult.searchLoan() != null){
-            return "이용자는 이미 다른 책을 대출 중입니다.";
+        
+        if(bookResult.searchLoan() != null){
+            return "이 책은 이미 대출 중입니다.";
         }
+        Loan loan = new Loan(bookResult, borrowerResult);
+        loanDB.saveLoan(loan);
 
-        ArrayList<Borrower> borrowerList = new ArrayList<Borrower>();
-        borrowerList.add(borrowerResult);
-
-        Loan newLoan = new Loan(bookResult, borrowerList);
-        loanApp.saveLoan(newLoan);
-
-        loanHistoryApp.copyLoan(newLoan);
+        loanHistoryDB.copyLoan(loan);
 
         return "대출이 완료되었습니다.";
     }
@@ -144,32 +145,40 @@ public class LibraryApplication
      * @return    반납 결과 메세지
      */
     public String returnOneBook(int bookID, int phoneNumber){
-        Book bookResult = bookApp.searchBook(bookID);
-        if (bookResult == null){
+        Book bookResult = bookDB.searchBook(bookID);
+        if(bookResult == null){
             return "등록되지 않은 책 입니다.";
         }
 
-        Borrower borrowerResult = borrowerApp.searchBorrower(phoneNumber);
-        if (borrowerResult == null){
+        Borrower borrowerResult = borrowerDB.searchBorrower(phoneNumber);
+        if(borrowerResult == null){
             return "등록되지 않은 이용자 입니다.";
         }
 
         Loan loanFromBook = bookResult.searchLoan();
         Loan loanFromBorrower = borrowerResult.searchLoan();
-
-        if (loanFromBook == null || loanFromBorrower == null){
-            return "대출 정보가 없습니다.";
-        }
-
-        if (loanFromBook != loanFromBorrower){
+        if(loanFromBook != loanFromBorrower){
             return "대출 정보가 일치하지 않습니다.";
         }
 
-        Loan targetLoan = loanFromBook;
+        borrowerResult.disconnect();
+        loanFromBorrower.disconnect();
+        bookResult.disconnect();
+        loanFromBook.disconnect();
 
-        targetLoan.disconnect();
-        loanApp.deleteLoan(targetLoan);
-
+        loanDB.deleteLoan();
         return "반납이 완료되었습니다.";
     }
+
+    /**
+     * 대출 내역들을 출력하는 메소드
+     *
+     * @param  y  메소드의 샘플 파라미터
+     * @return    x 와 y의 합
+     */
+    public String historyDisplay(int phoneNumber)
+    {
+        return loanHistoryDB.display(phoneNumber);
+    }
+
 }

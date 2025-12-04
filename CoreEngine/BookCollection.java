@@ -9,20 +9,14 @@ import java.util.*;
  * @version (2025.11.25)
  */
 public class BookCollection
-{
-    public Book book;
-
-    private TreeSet<Book> bookCollection;
-    private Iterator<Book> BookIt = bookCollection.iterator();
-
+{    
+    private TreeSet<Book> book;
     /**
-     * BookCollection 클래스의 객체 생성자
-     * 
-     * @param  bookCollection : TreeSet<Book> 
+     * BookCollection 클래스의 객체 생성자 
      */
-    public BookCollection(TreeSet<Book> bookCollection)
+    public BookCollection()
     {
-        bookCollection = new TreeSet<Book>();
+        book = new TreeSet<Book>();
     }
 
     /**
@@ -32,9 +26,9 @@ public class BookCollection
      * @return    등록돼 있으면 true, 등록돼 있지 않으면 false
      */
     public boolean checkBook(int bookID){
-        Iterator<Book> it = bookCollection.iterator();
-        while(it.hasNext()){
-            if(it.next().getBookID() == bookID){
+        Iterator<Book> BookIt = book.iterator();
+        while(BookIt.hasNext()){
+            if(BookIt.next().getBookID() == bookID){
                 return true;
             }
         }
@@ -47,8 +41,8 @@ public class BookCollection
      * @param  book : Book
      * @return    저장완료 메세지
      */
-    public String saveBook(Book book){
-        bookCollection.add(book);
+    public String saveBook(Book b){
+        book.add(b);
         return "BookCollection 저장 완료";
     }
 
@@ -57,11 +51,8 @@ public class BookCollection
      *
      * @return    book
      */
-    public Book getBook(){
-        if(BookIt.hasNext()){
-            return BookIt.next();
-        }
-        return null;
+    public Iterator<Book> getBooks(){
+        return book.iterator();
     }
 
     /**
@@ -71,14 +62,15 @@ public class BookCollection
      * @return   일치하는 Book, 없으면 null
      */
     public Book searchBook(int bookID){
-        Iterator<Book> it = bookCollection.iterator();
-        while(it.hasNext()){
-            Book b = it.next();
+        Iterator<Book> BookIt = book.iterator();
+        while(BookIt.hasNext()){
+            Book b = BookIt.next();
             if(b.getBookID() == bookID){
                 return b;
             }
         }
         return null;
     }
-
+    
+    
 }

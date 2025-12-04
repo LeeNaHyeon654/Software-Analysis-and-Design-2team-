@@ -11,8 +11,8 @@ import java.util.Calendar;
  */
 public class Loan
 {
-    public Book LoanBook;
-    public ArrayList<Borrower> LoanBorrower;
+    private Book LoanBook;
+    private Borrower LoanBorrower;
 
     private Date loanDate;
     private Date returnDate;
@@ -24,8 +24,7 @@ public class Loan
      * 
      * @ param  LoanBook : Book, LoanBorrower : ArrayList<Borrower>
      */
-    public Loan(Book LoanBook, ArrayList<Borrower> LoanBorrower)
-    {
+    public Loan(Book LoanBook, Borrower LoanBorrower){
         this.LoanBook = LoanBook;
         this.LoanBorrower = LoanBorrower;
 
@@ -34,14 +33,24 @@ public class Loan
         cal.setTime(loanDate); // 날짜 객체에 오늘 날짜를 대입
         cal.add(Calendar.DATE, 15); // 오늘 날짜 + 15 = 반납 일자
         this.returnDate = cal.getTime(); // 반납 일자 변수에 위에서 구한 값을 대입
+
+        LoanBook.connect(this);
+        LoanBorrower.connect(this);
     }
 
     /**
      * UC6 - Loan과 Book, Borrower 사이의 연결을 해제하는 메소드.
      */
-    public void disconnect()
-    {
+    public void disconnect(){
         LoanBorrower = null;
         LoanBook = null;
+    }
+
+    public Borrower getBorrower() {
+        return LoanBorrower;
+    }
+
+    public Book getBook() {
+        return LoanBook;
     }
 }

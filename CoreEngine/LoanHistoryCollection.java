@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class LoanHistoryCollection
 {
-    public Loan loan;
+    private Loan loan;
     
     private ArrayList<Loan> loanHistoryCollection;
 
@@ -19,9 +19,8 @@ public class LoanHistoryCollection
      * 
      * @param   loanHistoryCollection : ArrayList<Loan>
      */
-    public LoanHistoryCollection(ArrayList<Loan> loanHistoryCollection)
-    {
-        loanHistoryCollection = new ArrayList<Loan>();
+    public LoanHistoryCollection(){
+        loanHistoryCollection = new ArrayList<Loan>();           
     }
 
     /**
@@ -32,5 +31,29 @@ public class LoanHistoryCollection
     public String copyLoan(Loan loan){
         loanHistoryCollection.add(loan);
         return "LoanHistoryCollection 백업 완료";
+    }
+
+    /**
+     * 대출 내역들을 출력하는 메소드
+     * 
+     * @param   phoneNumber : int
+     * @return  대출 내역 결과 메세지
+     */
+    public String display(int phoneNumber) {
+        String result = "";
+
+        Iterator<Loan> it = loanHistoryCollection.iterator();
+        while (it.hasNext()){
+            Loan loan = it.next();
+            Borrower br = loan.getBorrower();
+            if (br != null && br.getPhoneNumber() == phoneNumber){
+                Book book = loan.getBook();
+                result += book.display();
+            }
+        }
+        if (result.equals("")){
+            return "이용자의 대출 내역이 없습니다.";
+        }
+        return result;
     }
 }

@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Borrower
 {
-    public Loan LoanDetail;
+    public ArrayList<Loan> LoanDetail;
 
     private String name;
     private int phoneNumber;
@@ -20,10 +20,11 @@ public class Borrower
      * 
      * @param  name : String, phoneNumber : int
      */
-    public Borrower(String name, int phoneNumber)
-    {
+    public Borrower(String name, int phoneNumber){
         this.name = name;
         this.phoneNumber = phoneNumber;
+
+        LoanDetail = new ArrayList<Loan>();
     }
 
     /**
@@ -32,9 +33,17 @@ public class Borrower
      * @return   연결된 Loan, 없으면 null
      */
     public Loan searchLoan(){
-        return LoanDetail;
+        if (LoanDetail == null){
+            return null;   
+        }
+
+        Iterator<Loan> it = LoanDetail.iterator();
+        if (it.hasNext()){
+            return it.next();
+        }
+        return null;
     }
-    
+
     /**
      * UC6 - Borrower와 Loan의 연결을 해제하는 메소드
      */
@@ -47,5 +56,21 @@ public class Borrower
      */
     public int getPhoneNumber(){
         return this.phoneNumber;
+    }
+
+    /**
+     * Borrower과 Loan의 연결하는 메소드
+     */
+    public void connect(Loan loan){
+        LoanDetail.add(loan);
+    }
+
+    /**
+     * 현재 Borrower가 대출 중인 책 권수를 알려주는 메소드
+     * 
+     * @return 대출 중인 권 수
+     */
+    public int getLoanCount(){
+        return LoanDetail.size();
     }
 }

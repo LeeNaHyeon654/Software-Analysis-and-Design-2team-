@@ -1,4 +1,5 @@
 package CoreEngine;
+import java.util.*;
 
 /**
  * 책에 대한 정보를 담은 클래스
@@ -8,12 +9,12 @@ package CoreEngine;
  */
 public class Book
 {
-    public Loan LoanList;
+    private Loan LoanList;
 
     private String title;
     private String author;
     private int bookID;
-    
+
     /**
      * Book 클래스의 객체 생성자
      * 
@@ -24,6 +25,8 @@ public class Book
         this.title = title;
         this.author = author;
         this.bookID = bookID;
+
+        this.LoanList = LoanList;
     }
 
     /**
@@ -31,23 +34,16 @@ public class Book
      *
      * @return    책의 정보(제목, 저자, 고유번호) 출력
      */
-    public String display()
-    {
-        if(checkBook()==true){
-            return "책의 제목 : " + title + ", 책의 저자 : " + author + ", 책의 고유번호 : " + bookID;
-        }
-        else{
-            return "대출 가능한 책의 정보가 없습니다";
-        }
+    public String display(){
+        return "책의 제목 : " + title + ", 책의 저자 : " + author + ", 책의 고유번호 : " + bookID + "\n";
     }
 
     /**
      * UC3 - 대출가능한 책인지 검사하는 메소드
-     *
+     * 
      * @return    boolean 대출가능이면 true, 대출 불가능이면 false
      */
-    public boolean checkBook()
-    {
+    public boolean checkBook(){
         return LoanList == null;
     }
 
@@ -72,5 +68,12 @@ public class Book
      */
     public int getBookID() {
         return this.bookID;
+    }
+
+    /**
+     * Book과 Loan의 연결하는 메소드
+     */
+    public void connect(Loan loan){
+        this.LoanList = loan;
     }
 }
