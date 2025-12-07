@@ -1,6 +1,7 @@
 package CoreEngine;
 
 import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Loan 클래스에서 생성된 대출 정보를 저장하는 클래스.
@@ -13,7 +14,6 @@ public class LoanCollection
     private Loan loan;
 
     private ArrayList<Loan> loanCollection;
-    
     /**
      * LoanCollection 클래스의 객체 생성자
      */
@@ -36,8 +36,17 @@ public class LoanCollection
      *
      * @return  반납 완료 메세지
      */
-    public String deleteLoan(){
+    public String deleteLoan(Loan loan){
         loanCollection.remove(loan);
         return "반납 완료";
+    }
+
+    /**
+     * Loan을 하나 가져오는 메소드
+     *
+     * @return    Loan
+     */
+    public Iterator<Loan> getLoan(){
+        return loanCollection.iterator();
     }
 }

@@ -13,7 +13,7 @@ public class BorrowerCollection
     private Borrower borrower;
 
     private ArrayList<Borrower> borrowerCollection;
-    
+
     /**
      * BorrowerCollection 클래스의 객체 생성자
      */
@@ -64,5 +64,14 @@ public class BorrowerCollection
             }
         }
         return null;
+    }
+
+    /**
+     * Borrower을 하나 가져오는 메소드
+     *
+     * @return    Borrower
+     */
+    public Iterator<Borrower> getBorrower(){
+        return borrowerCollection.iterator();
     }
 }

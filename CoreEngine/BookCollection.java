@@ -16,7 +16,7 @@ public class BookCollection
      */
     public BookCollection()
     {
-        book = new TreeSet<Book>();
+        book = new TreeSet<>(Comparator.comparingInt(Book::getBookID));
     }
 
     /**
