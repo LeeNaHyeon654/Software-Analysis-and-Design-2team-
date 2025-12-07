@@ -53,4 +53,8 @@ public class Loan
     public Book getBook() {
         return LoanBook;
     }
+
+    public String display(){
+        return "책 ID: " + LoanBook.getBookID() + ", 대출일: " + loanDate + ", 반납예정일: " + returnDate + "\n";
+    }
 }

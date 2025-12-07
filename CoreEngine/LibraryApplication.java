@@ -11,9 +11,8 @@ public class LibraryApplication
 {
     private BookCollection bookDB;
     private LoanCollection loanDB;
-    private LoanHistoryCollection loanHistoryDB;
     private BorrowerCollection borrowerDB;
-    
+
     private String LibraryName;
 
     /**
@@ -23,10 +22,9 @@ public class LibraryApplication
      */
     public LibraryApplication(String LibraryName){
         this.LibraryName = LibraryName;
-        
+
         bookDB = new BookCollection();
         loanDB = new LoanCollection();
-        loanHistoryDB = new LoanHistoryCollection();
         borrowerDB = new BorrowerCollection();
     }
 
@@ -80,7 +78,7 @@ public class LibraryApplication
             }
         }
         if(result.equals("")){
-            result =  "대출 가능한 책의 정보가 없습니다";
+            result = "대출 가능한 책의 정보가 없습니다";
         }
         return result;
     }
@@ -101,7 +99,7 @@ public class LibraryApplication
             }
         }
         if(result.equals("")){
-            result =  "대출 중인 책의 정보가 없습니다";
+            result = "대출 중인 책의 정보가 없습니다";
         }
         return result;
     }
@@ -126,14 +124,12 @@ public class LibraryApplication
         if(borrowerResult.getLoanCount() >=10){
             return "대출 가능한 권수를 초과했습니다. (최대 10권)";
         }
-        
+
         if(bookResult.searchLoan() != null){
             return "이 책은 이미 대출 중입니다.";
         }
         Loan loan = new Loan(bookResult, borrowerResult);
         loanDB.saveLoan(loan);
-
-        loanHistoryDB.copyLoan(loan);
 
         return "대출이 완료되었습니다.";
     }
@@ -156,8 +152,12 @@ public class LibraryApplication
         }
 
         Loan loanFromBook = bookResult.searchLoan();
-        Loan loanFromBorrower = borrowerResult.searchLoan();
-        if(loanFromBook != loanFromBorrower){
+        Loan loanFromBorrower = borrowerResult.searchLoan(bookID);
+        if(loanFromBorrower == null || loanFromBook == null){
+            return "대출 정보가 일치하지 않습니다.";
+        }
+
+        if(loanFromBorrower != loanFromBook){
             return "대출 정보가 일치하지 않습니다.";
         }
 
@@ -166,19 +166,52 @@ public class LibraryApplication
         bookResult.disconnect();
         loanFromBook.disconnect();
 
-        loanDB.deleteLoan();
+        loanDB.deleteLoan(loanFromBorrower);
+        loanDB.deleteLoan(loanFromBook);
         return "반납이 완료되었습니다.";
     }
 
     /**
-     * 대출 내역들을 출력하는 메소드
+     * Borrower의 대출 내역들을 출력하는 메소드
      *
-     * @param  y  메소드의 샘플 파라미터
-     * @return    x 와 y의 합
+     * @param  phoneNumber : int
+     * @return   대출 내역 결과 메세지
      */
-    public String historyDisplay(int phoneNumber)
+    public String displayLoansForBorrower(int phoneNumber)
     {
-        return loanHistoryDB.display(phoneNumber);
+        String result = "";
+
+        Iterator<Loan> LoanIt = loanDB.getLoan();
+        while (LoanIt.hasNext()){
+            Loan loan = LoanIt.next();
+            Borrower borrower = loan.getBorrower();
+            if (borrower != null && borrower.getPhoneNumber() == phoneNumber){
+                Book book = loan.getBook();
+                result += book.display();
+            }
+        }
+        if (result.equals("")){
+            return "이용자의 대출 내역이 없습니다.";
+        }
+        return result;
     }
 
+    /**
+     * Borrower들의 목록을 출력하는 메소드
+     *
+     * @return   Borrower목록 결과
+     */
+    public String displayAllBorrowers(){
+        String result = "";
+
+        Iterator<Borrower> BorrowerIt = borrowerDB.getBorrower();
+        while(BorrowerIt.hasNext()){
+            Borrower borrower = BorrowerIt.next();
+            result += borrower.display();
+        }
+        if(result.equals("")){
+            return "등록된 이용자가 없습니다.";
+        }
+        return result;
+    }
 }

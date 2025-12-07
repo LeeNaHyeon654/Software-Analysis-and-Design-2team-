@@ -32,14 +32,17 @@ public class Borrower
      *
      * @return   연결된 Loan, 없으면 null
      */
-    public Loan searchLoan(){
+    public Loan searchLoan(int bookID){
         if (LoanDetail == null){
             return null;   
         }
 
         Iterator<Loan> it = LoanDetail.iterator();
-        if (it.hasNext()){
-            return it.next();
+        while(it.hasNext()){
+            Loan loan = it.next();
+            if(loan.getBook().getBookID() == bookID){
+                return loan;  
+            }
         }
         return null;
     }
@@ -52,10 +55,21 @@ public class Borrower
     }
 
     /**
-     * 이용자의 전화번호를 가져오는 메소드
+     * Borrower의 전화번호를 가져오는 메소드
+     * 
+     * @return Borrower의 전화번호
      */
     public int getPhoneNumber(){
         return this.phoneNumber;
+    }
+
+    /**
+     * Borrower의 이름을 가져오는 메소드
+     * 
+     * @return Borrower의 이름
+     */
+    public String getName(){
+        return this.name;
     }
 
     /**
@@ -72,5 +86,14 @@ public class Borrower
      */
     public int getLoanCount(){
         return LoanDetail.size();
+    }
+
+    /**
+     * 출력 요청 메소드
+     *
+     * @return    이용자의 정보(이름, 전화번호) 출력
+     */
+    public String display(){
+        return "이용자 이름: " + name + ", 전화번호: " + phoneNumber + "\n";
     }
 }

@@ -64,10 +64,21 @@ public class Book
     }
 
     /**
-     * 책의 고유변호를 가져오는 메소드
+     * Book의 고유번호를 가져오는 메소드
+     * 
+     * @return Book의 고유번호
      */
     public int getBookID() {
         return this.bookID;
+    }
+
+    /**
+     * Book의 제목를 가져오는 메소드
+     * 
+     * @return Book의 제목
+     */
+    public String getBookTitle() {
+        return this.title;
     }
 
     /**
