@@ -10,11 +10,14 @@ import java.util.ArrayList;
  */
 public class LoanCollection
 {
-    public Loan loan;
+    private Loan loan;
 
     private ArrayList<Loan> loanCollection;
-
-    public LoanCollection(ArrayList<Loan> loanCollection){
+    
+    /**
+     * LoanCollection 클래스의 객체 생성자
+     */
+    public LoanCollection(){
         loanCollection = new ArrayList<Loan>();
     }
 
@@ -33,7 +36,7 @@ public class LoanCollection
      *
      * @return  반납 완료 메세지
      */
-    public String deleteLoan(Loan loan){
+    public String deleteLoan(){
         loanCollection.remove(loan);
         return "반납 완료";
     }

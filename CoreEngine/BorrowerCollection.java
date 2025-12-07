@@ -10,17 +10,14 @@ import java.util.*;
  */
 public class BorrowerCollection
 {
-    public Borrower borrower;
+    private Borrower borrower;
 
     private ArrayList<Borrower> borrowerCollection;
-    private Iterator<Borrower> BorrowerIt = borrowerCollection.iterator();
     
     /**
      * BorrowerCollection 클래스의 객체 생성자
-     * 
-     * @param  borrowerCollection : ArrayList<Borrower>
      */
-    public BorrowerCollection(ArrayList<Borrower> borrowerCollection){
+    public BorrowerCollection(){
         borrowerCollection = new ArrayList<Borrower>();
     }
 
@@ -31,6 +28,7 @@ public class BorrowerCollection
      * @return    등록돼 있으면 true, 등록돼있지 않으면 false
      */
     public boolean checkBorrower(int phoneNumber){
+        Iterator<Borrower> BorrowerIt = borrowerCollection.iterator();
         while(BorrowerIt.hasNext()){
             Borrower br = BorrowerIt.next();
             if(br.getPhoneNumber() == phoneNumber){
@@ -58,6 +56,7 @@ public class BorrowerCollection
      * @return   일치하는 Borrower, 없으면 null
      */
     public Borrower searchBorrower(int phoneNumber){
+        Iterator<Borrower> BorrowerIt = borrowerCollection.iterator();
         while(BorrowerIt.hasNext()){
             Borrower br = BorrowerIt.next();
             if(br.getPhoneNumber() == phoneNumber){
