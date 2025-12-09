@@ -7,7 +7,7 @@ import java.util.*;
  * @author (2024320009 이나현, 2024320011 김혜린)
  * @version (2025.11.25)
  */
-public class Book
+public class Book implements Comparable<Book>
 {
     private Loan LoanList;
 
@@ -30,16 +30,26 @@ public class Book
     }
 
     /**
-     * UC3 - 출력 요청 메소드
+     * 책 고유번호(bookID) 기준 오름차순 비교
+     * 
+     * @param   other : Book
+     * @return  두 book 객체의 bookID를 비교하여, 오름차순으로 정렬된 값.
+     */
+    public int compareTo(Book other){
+        return Integer.compare(this.bookID, other.bookID);
+    }
+
+    /**
+     * 출력 요청 메소드
      *
      * @return    책의 정보(제목, 저자, 고유번호) 출력
      */
     public String display(){
-        return "책의 제목 : " + title + ", 책의 저자 : " + author + ", 책의 고유번호 : " + bookID + "\n";
+        return "책 제목 : " + title + "  |  책 저자 : " + author + "  |  책 등록번호 : " + bookID;
     }
 
     /**
-     * UC3 - 대출가능한 책인지 검사하는 메소드
+     * 대출가능한 책인지 검사하는 메소드
      * 
      * @return    boolean 대출가능이면 true, 대출 불가능이면 false
      */
@@ -48,7 +58,7 @@ public class Book
     }
 
     /**
-     * UC6 - 현재 Book과 연결된 Loan을 검색하는 메소드
+     * 현재 Book과 연결된 Loan을 검색하는 메소드
      *
      * @return  연결된 Loan, 없으면 null
      */
@@ -57,7 +67,7 @@ public class Book
     }
 
     /**
-     * UC6 - Book과 Loan의 연결을 해제하는 메소드
+     * Book과 Loan의 연결을 해제하는 메소드
      */
     public void disconnect(){
         LoanList = null;
@@ -83,6 +93,8 @@ public class Book
 
     /**
      * Book과 Loan의 연결하는 메소드
+     * 
+     * @param   loan : Loan
      */
     public void connect(Loan loan){
         this.LoanList = loan;

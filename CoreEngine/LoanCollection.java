@@ -24,11 +24,12 @@ public class LoanCollection
     /**
      * Loan을 Collection에 저장하는 메소드.
      *
+     * @param   loan : Loan
      * @return  저장 완료 메세지
      */
     public String saveLoan(Loan loan){
         loanCollection.add(loan);
-        return "LoanCollection 저장 완료";
+        return "[대출 등록 완료]\n이용자: " + loan.getBorrower().getName() + "  |  책 ID: " + loan.getBook().getBookID();
     }
 
     /**
@@ -40,14 +41,5 @@ public class LoanCollection
     public String deleteLoan(Loan loan){
         loanCollection.remove(loan);
         return "반납 완료";
-    }
-
-    /**
-     * Loan을 하나 가져오는 메소드
-     *
-     * @return    Loan
-     */
-    public Iterator<Loan> getLoan(){
-        return loanCollection.iterator();
     }
 }

@@ -28,8 +28,9 @@ public class Borrower
     }
 
     /**
-     * UC6 - 현재 Borrower와 연결된 Loan을 검색하는 메소드
+     * 현재 Borrower와 연결된 Loan을 검색하는 메소드
      *
+     * @param   book : int
      * @return   연결된 Loan, 없으면 null
      */
     public Loan searchLoan(int bookID){
@@ -48,10 +49,21 @@ public class Borrower
     }
 
     /**
-     * UC6 - Borrower와 Loan의 연결을 해제하는 메소드
+     * Loan을 하나 가져오는 메소드
+     *
+     * @return    Loan
      */
-    public void disconnect(){
-        LoanDetail = null;
+    public Iterator<Loan> getLoan(){
+        return LoanDetail.iterator();
+    }
+
+    /**
+     * Borrower와 Loan의 연결을 해제하는 메소드
+     * 
+     * @param   loan : Loan
+     */
+    public void disconnect(Loan loan){
+        LoanDetail.remove(loan);
     }
 
     /**
@@ -74,6 +86,8 @@ public class Borrower
 
     /**
      * Borrower과 Loan의 연결하는 메소드
+     * 
+     * @param   loan : Loan
      */
     public void connect(Loan loan){
         LoanDetail.add(loan);
@@ -94,6 +108,6 @@ public class Borrower
      * @return    이용자의 정보(이름, 전화번호) 출력
      */
     public String display(){
-        return "이용자 이름: " + name + ", 전화번호: " + phoneNumber + "\n";
+        return "이용자 이름: " + name + " |  전화번호: " + phoneNumber;
     }
 }
