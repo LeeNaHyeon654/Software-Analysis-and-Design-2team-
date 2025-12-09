@@ -32,8 +32,9 @@ public class LoanCollection
     }
 
     /**
-     * UC6 - Loan 객체를 Collection 내부에서 삭제하는 메소드.
+     * Loan 객체를 Collection 내부에서 삭제하는 메소드.
      *
+     * @param   loan : Loan
      * @return  반납 완료 메세지
      */
     public String deleteLoan(Loan loan){
