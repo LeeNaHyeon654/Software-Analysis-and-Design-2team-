@@ -18,6 +18,7 @@ public class Loan
     private Date returnDate;
 
     private static final int dueDate = 15;
+
     /**
      * Loan 클래스의 객체 생성자
      * 
@@ -38,22 +39,37 @@ public class Loan
     }
 
     /**
-     * UC6 - Loan과 Book, Borrower 사이의 연결을 해제하는 메소드.
+     * Loan과 Book, Borrower 사이의 연결을 해제하는 메소드.
      */
     public void disconnect(){
         LoanBorrower = null;
         LoanBook = null;
     }
 
+    /**
+     * Borrower을 가져오는 메소드
+     * 
+     * @return Borrower
+     */
     public Borrower getBorrower() {
         return LoanBorrower;
     }
 
+    /**
+     * Book을 가져오는 메소드
+     * 
+     * @return Book
+     */
     public Book getBook() {
         return LoanBook;
     }
 
+    /**
+     * 출력 요청 메소드
+     *
+     * @return    대출 정보(책ID, 대출일, 반납예정일) 출력
+     */
     public String display(){
-        return "책 ID: " + LoanBook.getBookID() + ", 대출일: " + loanDate + ", 반납예정일: " + returnDate + "\n";
+        return "책 등록번호: " + LoanBook.getBookID() + "  |  대출일: " + loanDate + "  |  반납예정일: " + returnDate;
     }
 }

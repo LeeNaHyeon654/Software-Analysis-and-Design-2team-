@@ -20,23 +20,24 @@ public class Borrower
      * 
      * @param  name : String, phoneNumber : int
      */
-    public Borrower(String name, int phoneNumber)
-    {
-        this.name = name; //미대출 상태로 설정해야 함.
+    public Borrower(String name, int phoneNumber){
+        this.name = name;
         this.phoneNumber = phoneNumber;
 
         LoanDetail = new ArrayList<Loan>();
     }
 
     /**
-     * UC6 - 현재 Borrower와 연결된 Loan을 검색하는 메소드
+     * 현재 Borrower와 연결된 Loan을 검색하는 메소드
      *
+     * @param   book : int
      * @return   연결된 Loan, 없으면 null
      */
     public Loan searchLoan(int bookID){
         if (LoanDetail == null){
             return null;   
         }
+
         Iterator<Loan> it = LoanDetail.iterator();
         while(it.hasNext()){
             Loan loan = it.next();
@@ -48,10 +49,12 @@ public class Borrower
     }
 
     /**
-     * UC6 - Borrower와 Loan의 연결을 해제하는 메소드
+     * Borrower와 Loan의 연결을 해제하는 메소드
+     * 
+     * @param   loan : Loan
      */
-    public void disconnect(){
-        LoanDetail = null;
+    public void disconnect(Loan loan){
+        LoanDetail.remove(loan);
     }
 
     /**
@@ -74,6 +77,8 @@ public class Borrower
 
     /**
      * Borrower과 Loan의 연결하는 메소드
+     * 
+     * @param   loan : Loan
      */
     public void connect(Loan loan){
         LoanDetail.add(loan);
@@ -94,6 +99,6 @@ public class Borrower
      * @return    이용자의 정보(이름, 전화번호) 출력
      */
     public String display(){
-        return "이용자 이름: " + name + ", 전화번호: " + phoneNumber + "\n";
+        return "이용자 이름: " + name + " |  전화번호: " + phoneNumber;
     }
 }

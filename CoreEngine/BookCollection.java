@@ -10,23 +10,23 @@ import java.util.*;
  */
 public class BookCollection
 {    
-    private TreeSet<Book> book;
+    private TreeSet<Book> bookCollection;
     /**
      * BookCollection 클래스의 객체 생성자 
      */
     public BookCollection()
     {
-        book = new TreeSet<>(Comparator.comparingInt(Book::getBookID));
+        bookCollection = new TreeSet<>();
     }
 
     /**
-     * UC2 - 이미 등록돼 있는지 book인지 검사하는 메소드
+     * 이미 등록돼 있는지 book인지 검사하는 메소드
      *
      * @param  bookID : int
      * @return    등록돼 있으면 true, 등록돼 있지 않으면 false
      */
     public boolean checkBook(int bookID){
-        Iterator<Book> BookIt = book.iterator();
+        Iterator<Book> BookIt = bookCollection.iterator();
         while(BookIt.hasNext()){
             if(BookIt.next().getBookID() == bookID){
                 return true;
@@ -36,23 +36,23 @@ public class BookCollection
     }
 
     /**
-     * UC2 - book을 Collection에 저장하는 메소드
+     * book을 Collection에 저장하는 메소드
      *
      * @param  book : Book
      * @return    저장완료 메세지
      */
-    public String saveBook(Book b){
-        book.add(b);
-        return "BookCollection 저장 완료";
+    public String saveBook(Book book){
+        bookCollection.add(book);
+        return "[책 등록 완료]\n제목: " + book.getBookTitle() + "  |  등록번호: " + book.getBookID() + "\n";
     }
 
     /**
-     * UC3 - Book을 하나 가져오는 메소드
+     * Book을 하나 가져오는 메소드
      *
-     * @return    book
+     * @return    Book
      */
-    public Iterator<Book> getBooks(){
-        return book.iterator();
+    public Iterator<Book> getBook(){
+        return bookCollection.iterator();
     }
 
     /**
@@ -62,7 +62,7 @@ public class BookCollection
      * @return   일치하는 Book, 없으면 null
      */
     public Book searchBook(int bookID){
-        Iterator<Book> BookIt = book.iterator();
+        Iterator<Book> BookIt = bookCollection.iterator();
         while(BookIt.hasNext()){
             Book b = BookIt.next();
             if(b.getBookID() == bookID){

@@ -41,7 +41,7 @@ public class LibraryApplication
             return borrowerDB.saveBorrower(borrower);
         }
         else{
-            return "이미 등록된 이용자입니다.";
+            return "[이용자 등록 실패]\n전화번호 " + phoneNumber + " 는 이미 등록된 이용자입니다.\n";
         }
     }
 
@@ -58,7 +58,7 @@ public class LibraryApplication
             return bookDB.saveBook(book);
         }
         else{
-            return "이미 등록된 책입니다.";
+            return "[책 등록 실패]\n등록번호 " + bookID + "는 이미 등록된 책입니다.\n";
         }
     }
 
@@ -68,21 +68,17 @@ public class LibraryApplication
      * @return    대출가능한 책들 출력 결과 메세지
      */
     public String displayBooksForLoan(){
-        String result = "";
+        String result = "===== 대출 가능 책 목록 =====\n";
 
-        Iterator<Book> BookIt = bookDB.getBooks();
+        Iterator<Book> BookIt = bookDB.getBook();
         while(BookIt.hasNext()){
             Book book = BookIt.next();
-            if(book.searchLoan() == null){
-                result += book.display();
+            if(book.checkBook() == true){
+                result += book.display() + "\n";
             }
-            else{
-                result = "대출 가능한 책이 없습니다.";
-            }
-            bringBook = bookApp.getBook();
         }
-        if(result.equals("")){
-            result = "대출 가능한 책의 정보가 없습니다";
+        if(result.equals("===== 대출 가능 책 목록 =====\n")){
+            result = "** 대출 가능한 책의 정보가 없습니다. **";
         }
         return result;
     }
@@ -93,20 +89,17 @@ public class LibraryApplication
      * @return    대출중인 책들 출력 결과 메세지
      */
     public String displayBooksOnLoan(){
-        String result = "";
+        String result = "===== 대출 중 책 목록 =====\n";
 
-        Iterator<Book> BookIt = bookDB.getBooks();
+        Iterator<Book> BookIt = bookDB.getBook();
         while(BookIt.hasNext()){
             Book book = BookIt.next();
-            if(book.searchLoan() != null){
-                result += book.display();
-            }
-            else{
-                return "대출 가능한 책이 없습니다.";
+            if(book.checkBook() != true){
+                result += book.display() + "\n";
             }
         }
-        if(result.equals("")){
-            result = "대출 중인 책의 정보가 없습니다";
+        if(result.equals("===== 대출 중 책 목록 =====\n")){
+            result = "** 대출 중인 책의 정보가 없습니다. **\n";
         }
         return result;
     }
@@ -120,25 +113,25 @@ public class LibraryApplication
     public String loanOneBook(int bookID, int phoneNumber){
         Book bookResult = bookDB.searchBook(bookID);
         if(bookResult == null){
-            return "등록되지 않은 책 입니다.";
+            return "[대출 실패]\n등록번호 " + bookID + "는 등록되지 않은 책입니다.\n";
         }
 
         Borrower borrowerResult = borrowerDB.searchBorrower(phoneNumber);
         if(borrowerResult == null){
-            return "등록되지 않은 이용자 입니다.";
+            return "[대출 실패]\n전화번호 " + phoneNumber + "는 등록되지 않은 이용자입니다.\n";
         }
 
         if(borrowerResult.getLoanCount() >=10){
-            return "대출 가능한 권수를 초과했습니다. (최대 10권)";
+            return "[대출 실패]\n대출 가능 권수(최대 10권)를 초과했습니다.\n";
         }
 
         if(bookResult.searchLoan() != null){
-            return "이 책은 이미 대출 중입니다.";
+            return "[대출 실패]\n등록번호 " + bookID + "인 책은 이미 대출 중입니다.\n";
         }
         Loan loan = new Loan(bookResult, borrowerResult);
         loanDB.saveLoan(loan);
 
-        return "대출이 완료되었습니다.";
+        return "[대출 완료]\n이용자: " + borrowerResult.getName() + "  |  책 ID: " + bookID + "\n";
     }
 
     /**
@@ -150,74 +143,75 @@ public class LibraryApplication
     public String returnOneBook(int bookID, int phoneNumber){
         Book bookResult = bookDB.searchBook(bookID);
         if(bookResult == null){
-            return "등록되지 않은 책 입니다.";
+            return "[반납 실패]\n등록번호 " + bookID + "는 등록되지 않은 책입니다.\n";
         }
 
         Borrower borrowerResult = borrowerDB.searchBorrower(phoneNumber);
         if(borrowerResult == null){
-            return "등록되지 않은 이용자 입니다.";
+            return "[반납 실패]\n전화번호 " + phoneNumber + "는 등록되지 않은 이용자입니다.\n";
         }
 
         Loan loanFromBook = bookResult.searchLoan();
         Loan loanFromBorrower = borrowerResult.searchLoan(bookID);
+
         if(loanFromBorrower == null || loanFromBook == null){
-            return "대출 정보가 일치하지 않습니다.";
+            return "[반납 실패]\n대출 정보가 존재하지 않거나 일치하지 않습니다.\n";
         }
 
         if(loanFromBorrower != loanFromBook){
-            return "대출 정보가 일치하지 않습니다.";
+            return "[반납 실패]\n대출 정보가 일치하지 않습니다.\n";
         }
 
-        borrowerResult.disconnect();
+        borrowerResult.disconnect(loanFromBorrower);
         loanFromBorrower.disconnect();
         bookResult.disconnect();
         loanFromBook.disconnect();
 
         loanDB.deleteLoan(loanFromBorrower);
         loanDB.deleteLoan(loanFromBook);
-        return "반납이 완료되었습니다.";
+
+        return "[반납 완료]\n이용자: " + borrowerResult.getName() + "  |  책 ID: " + bookID + "\n";
     }
 
     /**
-     * Borrower의 대출 내역들을 출력하는 메소드
+     * UC7 - Borrower의 대출 내역들을 출력하는 메소드
      *
      * @param  phoneNumber : int
      * @return   대출 내역 결과 메세지
      */
     public String displayLoansForBorrower(int phoneNumber)
     {
-        String result = "";
+        String result = "===== " + phoneNumber + "의 현재 대출 내역 목록 =====\n";
 
         Iterator<Loan> LoanIt = loanDB.getLoan();
         while (LoanIt.hasNext()){
             Loan loan = LoanIt.next();
             Borrower borrower = loan.getBorrower();
             if (borrower != null && borrower.getPhoneNumber() == phoneNumber){
-                Book book = loan.getBook();
-                result += book.display();
+                result += loan.display() + "\n";
             }
         }
-        if (result.equals("")){
-            return "이용자의 대출 내역이 없습니다.";
+        if (result.equals("===== " + phoneNumber + "의 현재 대출 내역 목록 =====\n")){
+            return "** " + phoneNumber + "의 대출 내역이 없습니다. **\n";
         }
         return result;
     }
 
     /**
-     * Borrower들의 목록을 출력하는 메소드
+     * UC8 - Borrower들의 목록을 출력하는 메소드
      *
-     * @return   Borrower목록 결과
+     * @return   Borrower 목록 결과
      */
     public String displayAllBorrowers(){
-        String result = "";
+        String result = "===== 이용자 목록 =====\n";
 
         Iterator<Borrower> BorrowerIt = borrowerDB.getBorrower();
         while(BorrowerIt.hasNext()){
             Borrower borrower = BorrowerIt.next();
-            result += borrower.display();
+            result += borrower.display() + "\n";
         }
-        if(result.equals("")){
-            return "등록된 이용자가 없습니다.";
+        if(result.equals("===== 이용자 목록 =====\n")){
+            return "** 등록된 이용자가 없습니다. **\n";
         }
         return result;
     }
